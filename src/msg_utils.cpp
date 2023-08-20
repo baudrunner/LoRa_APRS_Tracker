@@ -73,7 +73,7 @@ namespace MSG_Utils {
     for (String s1 : v1) {
       numAPRSMessages++;
     }
-    logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Main", "Number of APRS Messages : %s", String(numAPRSMessages));
+    logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Main", "Number of APRS Messages : %s", String(numAPRSMessages).c_str());
   }
 
   void loadMessagesFromMemory() {
@@ -125,7 +125,7 @@ namespace MSG_Utils {
     }
   }
 
-  void saveNewMessage(String typeMessage, String station, String newMessage) {
+  void saveNewMessage(const String& typeMessage, const String& station, String newMessage) {
     if (typeMessage == "APRS" && lastMessageAPRS != newMessage) {
       File fileToAppendAPRS = SPIFFS.open("/aprsMessages.txt", FILE_APPEND);
       if(!fileToAppendAPRS){
@@ -145,7 +145,7 @@ namespace MSG_Utils {
     }
   }
 
-  void sendMessage(String station, String textMessage) {
+  void sendMessage(String station, const String& textMessage) {
     String messageToSend;
     for(int i = station.length(); i < 9; i++) {
       station += ' ';

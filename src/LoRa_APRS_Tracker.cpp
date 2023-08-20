@@ -20,7 +20,6 @@
 #include "gps_utils.h"
 #include "bme_utils.h"
 #include "display.h"
-#include "SPIFFS.h"
 #include "utils.h"
 
 #include "APRSPacketLib.h"
@@ -111,7 +110,7 @@ void setup() {
   }
   show_display(" LoRa APRS", "", "     Richonguzman", "     -- CD2RXU --", "", "      " + versionDate, 4000);
   logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Main", "RichonGuzman (CD2RXU) --> LoRa APRS Tracker/Station");
-  logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Main", "Version: %s", versionDate);
+  logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Main", "Version: %s", versionDate.c_str());
 
   if (Config.ptt.active) {
     pinMode(Config.ptt.io_pin, OUTPUT);
@@ -136,7 +135,7 @@ void setup() {
   }
 
   powerManagement.lowerCpuFrequency();
-  logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Main", "Smart Beacon is: %s", utils::getSmartBeaconState());
+  logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Main", "Smart Beacon is: %s", utils::getSmartBeaconState().c_str());
   logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Main", "Setup Done!");
   menuDisplay = BUTTON_PIN == -1 ? 20 : 0;
 }

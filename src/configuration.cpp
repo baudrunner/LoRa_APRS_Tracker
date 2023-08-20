@@ -24,23 +24,23 @@ void Configuration::readFile(fs::FS &fs, const char *fileName) {
     }
 
     JsonArray BeaconsArray = data["beacons"];
-    for (int i = 0; i < BeaconsArray.size(); i++) {
+    for (auto && i : BeaconsArray) {
         Beacon bcn;
 
-        bcn.callsign          = BeaconsArray[i]["callsign"].as<String>();
-        bcn.symbol            = BeaconsArray[i]["symbol"].as<String>();
-        bcn.overlay           = BeaconsArray[i]["overlay"].as<String>();
-        bcn.comment           = BeaconsArray[i]["comment"].as<String>();
+        bcn.callsign          = i["callsign"].as<String>();
+        bcn.symbol            = i["symbol"].as<String>();
+        bcn.overlay           = i["overlay"].as<String>();
+        bcn.comment           = i["comment"].as<String>();
 
-        bcn.smartBeaconState  = BeaconsArray[i]["smart_beacon"]["active"].as<bool>();
-        bcn.slowRate          = BeaconsArray[i]["smart_beacon"]["slowRate"].as<int>();
-        bcn.slowSpeed         = BeaconsArray[i]["smart_beacon"]["slowSpeed"].as<int>();
-        bcn.fastRate          = BeaconsArray[i]["smart_beacon"]["fastRate"].as<int>();
-        bcn.fastSpeed         = BeaconsArray[i]["smart_beacon"]["fastSpeed"].as<int>();
-        bcn.minTxDist         = BeaconsArray[i]["smart_beacon"]["minTxDist"].as<int>();
-        bcn.minDeltaBeacon    = BeaconsArray[i]["smart_beacon"]["minDeltaBeacon"].as<int>();
-        bcn.turnMinDeg        = BeaconsArray[i]["smart_beacon"]["turnMinDeg"].as<int>();
-        bcn.turnSlope         = BeaconsArray[i]["smart_beacon"]["turnSlope"].as<int>();
+        bcn.smartBeaconState  = i["smart_beacon"]["active"].as<bool>();
+        bcn.slowRate          = i["smart_beacon"]["slowRate"].as<int>();
+        bcn.slowSpeed         = i["smart_beacon"]["slowSpeed"].as<int>();
+        bcn.fastRate          = i["smart_beacon"]["fastRate"].as<int>();
+        bcn.fastSpeed         = i["smart_beacon"]["fastSpeed"].as<int>();
+        bcn.minTxDist         = i["smart_beacon"]["minTxDist"].as<int>();
+        bcn.minDeltaBeacon    = i["smart_beacon"]["minDeltaBeacon"].as<int>();
+        bcn.turnMinDeg        = i["smart_beacon"]["turnMinDeg"].as<int>();
+        bcn.turnSlope         = i["smart_beacon"]["turnSlope"].as<int>();
 
         beacons.push_back(bcn);
     }
@@ -92,7 +92,7 @@ void Configuration::readFile(fs::FS &fs, const char *fileName) {
     configFile.close();
 }
 
-void Configuration::validateConfigFile(String currentBeaconCallsign) {
+void Configuration::validateConfigFile(const String& currentBeaconCallsign) {
   if (currentBeaconCallsign.indexOf("NOCALL") != -1) {
     logger.log(logging::LoggerLevel::LOGGER_LEVEL_ERROR, "Config", "Change all your callsigns in 'data/tracker_config.json' and upload it via 'Upload File System image'");
     show_display("ERROR", "Change all callsigns!", "'tracker_config.json'", "upload it via --> ", "'Upload File System image'");

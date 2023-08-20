@@ -89,7 +89,7 @@ public:
   bool    disableGps;
 
   Configuration();
-  void validateConfigFile(String currentBeaconCallsign);
+  void validateConfigFile(const String& currentBeaconCallsign);
 
 private:
   void readFile(fs::FS &fs, const char *fileName) ;

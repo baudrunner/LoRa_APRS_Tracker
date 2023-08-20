@@ -12,7 +12,7 @@ String getFourthNearTracker();
 
 void deleteListenedTrackersbyTime();
 void checkListenedTrackersByTimeAndDelete();
-void orderListenedTrackersByDistance(String callsign, float distance, float course);
+void orderListenedTrackersByDistance(const String& callsign, float distance, float course);
 void checkSmartBeaconInterval(int speed);
 void checkStandingUpdateTime();
 void checkSmartBeaconState();
