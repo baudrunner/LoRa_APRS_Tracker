@@ -91,6 +91,7 @@ namespace LoRa_Utils {
     if (Config.notification.buzzerActive && Config.notification.txBeep) {
       NOTIFICATION_Utils::beaconTxBeep();
     }
+    show_display("<  Tx  >", newPacket, "", "" , 1000);
     #if defined(TTGO_T_Beam_V1_0_SX1268)
     //Serial.print("Transmiting... ");
     int state = radio.transmit("\x3c\xff\x01" + newPacket);

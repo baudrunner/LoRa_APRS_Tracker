@@ -77,6 +77,7 @@ public:
   bool    showSymbolOnScreen;
   int     sendCommentAfterXBeacons;
   bool    displayEcoMode;
+  bool    displayMessageInEcoMode = true; // TODO
   int     displayTimeout;
   String  path;
   int     nonSmartBeaconRate;
@@ -90,6 +91,8 @@ public:
 
   Configuration();
   void validateConfigFile(const String& currentBeaconCallsign);
+  String readRawConfigFile();
+  bool writeConfigFile(const String& json);
 
 private:
   void readFile(fs::FS &fs, const char *fileName) ;

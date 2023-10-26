@@ -22,6 +22,9 @@ extern uint32_t             menuTime;
 extern bool                 messageLed;
 extern uint32_t             messageLedTime;
 
+extern bool             displayState;
+extern uint32_t         displayTime;
+
 extern bool                 digirepeaterActive;
 
 String   firstNearTracker            = "";
@@ -172,6 +175,16 @@ namespace MSG_Utils {
     if (packetReceived.substring(0,3) == "\x3c\xff\x01") {              // its an APRS packet
       //Serial.println(packetReceived); // only for debug
       aprsPacket = APRSPacketLib::processReceivedPacket(packetReceived.substring(3));
+      Serial.print('r'); // rx Lora
+      Serial.println(packetReceived.substring(3).c_str());
+      
+      if (Config.displayEcoMode && Config.displayMessageInEcoMode) {
+        display_toggle(true);
+        displayTime = millis();
+        displayState = true;
+        show_display("<  Rx  >", "From --> " + aprsPacket.sender, "", packetReceived , 1000);
+      }
+      
       if (aprsPacket.sender!=currentBeacon->callsign) {
         BLUETOOTH_Utils::sendPacket(packetReceived.substring(3));
 
