@@ -6,6 +6,9 @@
 
 extern logging::Logger logger;
 
+extern bool             displayState;
+extern uint32_t         displayTime;
+
 Configuration::Configuration() {
     _filePath = "/tracker_config.json";
     if (!SPIFFS.begin(false)) {
@@ -123,6 +126,10 @@ bool Configuration::writeConfigFile(const String& json) {
   configFile.close();
 
   logger.log(logging::LoggerLevel::LOGGER_LEVEL_INFO, "Config", "New config written, reload it");
+  display_toggle(true);
+  displayTime = millis();
+  displayState = true;
+  show_display("Config", "New config saved", "Will reload...", 2500);
 
   readFile(SPIFFS, _filePath.c_str());
 
@@ -131,14 +138,4 @@ bool Configuration::writeConfigFile(const String& json) {
 String Configuration::readRawConfigFile() {
   File configFile = SPIFFS.open(_filePath.c_str(), "r");
   if (!configFile) {
-    logger.log(logging::LoggerLevel::LOGGER_LEVEL_ERROR, "Config", "Failed to open file");
-    return F("{}");
-  }
-
-  String json = configFile.readString();
-  configFile.close();
-  json.replace('\n', ' ');
-  json.replace('\r', ' ');
-  json.replace('\t', ' ');
-  return json;
-}
+    logger.log(logging::LoggerLevel::LOGGER_LEVEL_ERROR, "
