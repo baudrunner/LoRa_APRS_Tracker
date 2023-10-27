@@ -293,7 +293,7 @@ namespace KEYBOARD_Utils {
       } else if (key == 8) {                          // Delete Last Key
         messageText = messageText.substring(0, messageText.length()-1);
       }
-    } else if (key==13) {
+    } else if (key==13) { // Enter
       if (menuDisplay==200) {
         if(myBeaconsIndex >= (myBeaconsSize-1)) {
           myBeaconsIndex = 0;
@@ -313,13 +313,17 @@ namespace KEYBOARD_Utils {
       } else if (menuDisplay==250) {
         show_display("", "", "    POWER OFF ...", 2000);
         powerManagement.shutdown();
+      } else if (menuDisplay == 0) {
+        menuDisplay = 1;
+      } else {
+        rightArrow();
       }
     }
     else if (key == 181) {  // Arrow Up
       upArrow();
     }
     else if (key == 182) {  // Arrow Down
-      downArrow();      
+      downArrow();
     }
     else if (key == 180) {  // Arrow Left
       leftArrow();
