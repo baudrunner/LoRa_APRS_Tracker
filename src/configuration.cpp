@@ -138,4 +138,14 @@ bool Configuration::writeConfigFile(const String& json) {
 String Configuration::readRawConfigFile() {
   File configFile = SPIFFS.open(_filePath.c_str(), "r");
   if (!configFile) {
-    logger.log(logging::LoggerLevel::LOGGER_LEVEL_ERROR, "
+    logger.log(logging::LoggerLevel::LOGGER_LEVEL_ERROR, "Config", "Failed to open file");
+    return F("{}");
+  }
+
+  String json = configFile.readString();
+  configFile.close();
+  json.replace('\n', ' ');
+  json.replace('\r', ' ');
+  json.replace('\t', ' ');
+  return json;
+}
