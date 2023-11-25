@@ -149,7 +149,7 @@ namespace APRSPacketLib {
       float convertedLatitude = firstLatPart.toFloat() + (secondLatPart.toFloat()/60) + (thirdLatPart.toFloat()/(60*100));
       String LatSign          = String(Latitude[7]);
       if (LatSign == "S") {
-        return -convertedLatitude;;
+        return -convertedLatitude;
       } else {
         return convertedLatitude;
       }

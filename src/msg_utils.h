@@ -11,7 +11,7 @@ void    loadNumMessages();
 void    loadMessagesFromMemory();
 void    ledNotification();
 void    deleteFile();
-void    sendMessage(String station, String textMessage);
+void    sendMessage(String station, const String& textMessage);
 void    checkReceivedMessage(String packetReceived);
 
 String getLastHeardTracker();
