@@ -31,6 +31,7 @@ void Configuration::readFile(fs::FS &fs, const char *fileName) {
         bcn.symbol            = BeaconsArray[i]["symbol"].as<String>();
         bcn.overlay           = BeaconsArray[i]["overlay"].as<String>();
         bcn.comment           = BeaconsArray[i]["comment"].as<String>();
+        bcn.coordinate        = BeaconsArray[i]["coordinate"].as<String>();
 
         bcn.smartBeaconState  = BeaconsArray[i]["smart_beacon"]["active"].as<bool>();
         bcn.slowRate          = BeaconsArray[i]["smart_beacon"]["slowRate"].as<int>();

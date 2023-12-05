@@ -1,12 +1,13 @@
 {
 	"beacons": [
 		{
-			"callsign": "NOCALL-7",
+			"callsign": "NOCALL-3",
 			"symbol": "[",
 			"overlay": "/",
-			"comment": "",
+			"comment": "LoRa Tracker",
+			"coordinate": "5356.66NL01000.57E-",
 			"smart_beacon": {
-				"active": true,
+				"active": false,
 				"slowRate": 120,
 				"slowSpeed": 3,
 				"fastRate": 60,
@@ -22,6 +23,7 @@
 			"symbol": ">",
 			"overlay": "/",
 			"comment": "",
+			"coordinate": "",
 			"smart_beacon": {
 				"active": true,
 				"slowRate": 120,
@@ -39,6 +41,7 @@
 			"symbol": "j",
 			"overlay": "/",
 			"comment": "",
+			"coordinate": "",
 			"smart_beacon": {
 				"active": true,
 				"slowRate": 120,
@@ -62,16 +65,16 @@
 	"other": {
 		"simplifiedTrackerMode": false,
 		"showSymbolOnScreen": true,
-		"sendCommentAfterXBeacons": 10,
+		"sendCommentAfterXBeacons": 1,
 		"displayEcoMode": false,
 		"displayTimeout": 4,
 		"path": "WIDE1-1",
 		"nonSmartBeaconRate": 15,
 		"rememberStationTime": 30,
 		"maxDistanceToTracker": 30, 
-		"standingUpdateTime": 15,
+		"standingUpdateTime": 5,
 		"sendAltitude": true,
-		"sendBatteryInfo": false,
+		"sendBatteryInfo": true,
 		"bluetoothType": 1,
 		"bluetoothActive": true,
 		"disableGPS": false

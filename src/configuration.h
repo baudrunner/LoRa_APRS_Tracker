@@ -11,6 +11,7 @@ public:
   String symbol;
   String overlay;
   String comment;
+  String coordinate;
   bool  smartBeaconState;
   int   slowRate;
   int   slowSpeed;

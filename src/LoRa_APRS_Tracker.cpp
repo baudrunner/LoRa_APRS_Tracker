@@ -191,7 +191,20 @@ void loop() {
     STATION_Utils::checkStandingUpdateTime();
   }
   STATION_Utils::checkSmartBeaconState();
-  if (sendUpdate && gps_loc_update) {
+
+  if (currentBeacon->coordinate == ""){
+    if (sendUpdate && gps_loc_update) {
+      STATION_Utils::sendBeacon("GPS");
+    }
+  } else {
+    if (sendUpdate) {
+      STATION_Utils::sendBeacon("GPS");
+    }
+  }
+
+
+  //if (sendUpdate && gps_loc_update) {
+  if (sendUpdate) {
     STATION_Utils::sendBeacon("GPS");
   }
   if (gps_time_update) {
